@@ -111,6 +111,36 @@ class ConsistencyTests(unittest.TestCase):
                     f"Broken link in {md_file.relative_to(ROOT).as_posix()}: {target}",
                 )
 
+    def test_quick_fast_path_and_brevity_guardrails(self) -> None:
+        agents_md = ROOT / "AGENTS.md"
+        self.assertTrue(agents_md.is_file(), "Project rule AGENTS.md must exist.")
+        self.assertLess(agents_md.stat().st_size, 24000, "AGENTS.md must stay under 24 KB limit.")
+
+        for edition_dir in (WEB_DIR, LOCAL_DIR):
+            skill_text = (edition_dir / "SKILL.md").read_text(encoding="utf-8")
+            self.assertIn("Quick Fast-Path", skill_text)
+            self.assertIn("350", skill_text)
+
+        reporting_text = (CORE_DIR / "reporting.md").read_text(encoding="utf-8")
+        self.assertIn("`P-07`", reporting_text)
+        self.assertIn("`P-08`", reporting_text)
+        for key in (
+            "schema_version",
+            "audit_id",
+            "mode",
+            "execution_topology",
+            "auditor_count",
+            "auditors",
+            "object",
+            "coverage_ledger",
+            "budget",
+            "findings",
+            "moderator",
+            "limitations",
+            "status",
+        ):
+            self.assertIn(f"`{key}`", reporting_text)
+
 
 if __name__ == "__main__":
     unittest.main()

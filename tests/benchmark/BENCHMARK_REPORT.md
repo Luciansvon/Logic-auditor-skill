@@ -8,7 +8,7 @@
 | :--- | :--- |
 | Ground-truth scenarios covered | 13 / 13 (`scenario_parity=True`) |
 | Contract & guardrail fixture accuracy | 7 / 7 (100.0%) |
-| Mean pass latency | 3.143 ms (stdev: 0.73 ms) |
+| Mean pass latency | 3.716 ms (stdev: 0.05 ms) |
 | Token / API cost | `null` (deterministic local run; not fabricated) |
 
 ## Fixture-Level Results

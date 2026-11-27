@@ -54,10 +54,10 @@ Severity (how bad if it happens) and Confidence (how strong current proof is) an
 - Multiple auditors citing the **exact same evidence slice** count as **one evidence base**.
 - Under `virtual_swarm`, `independent_discoveries` MUST stay `"single_model"` (or `1`). Confidence in `virtual_swarm` rises only via new evidence or executed checks, never perspective count.
 
-## `E-06` — Duplicate Aggregation
+## `E-06` — Duplicate Aggregation & Provenance Parity
 - Merge findings ONLY when they share the **same root cause, location/object, and failure mechanism**.
 - **Never merge** distinct root causes just because surface symptoms look alike.
-- When merging, **preserve every auditor's `evidence[]` entries and `auditor_id` provenance** inside `source_auditors[]` and `evidence[]`.
+- When merging, **every auditor ID listed in `source_auditors[]` MUST appear as `auditor_id` on at least one entry in `evidence[]`** so provenance stays 100% traceable without dropping any contributor.
 - Distinguish pre-debate independent discovery from post-debate agreement.
 
 ## `E-07` — Material Verification Priority

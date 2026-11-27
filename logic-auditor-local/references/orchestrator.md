@@ -18,6 +18,8 @@ Execute every audit in this sequence, with [guardrails.md](guardrails.md) active
 12. **Audit Record** — structure findings and provenance (`P-01`).
 13. **Adaptive User Report** — deliver concise decision-ready output (`P-02`).
 
+**Quick Fast-Path (`quick` mode):** skip Stage 9 (0 cross-check rounds), keep Stage 12 lightweight in-session (no inline JSON dump unless requested under `P-08`), and execute directly from `SKILL.md` without opening all reference modules (`M-02`).
+
 ## `O-02` — Tool-Verified Passive Capability Detection (`LA-02`)
 Probe **actual tools and permissions available in the active session**, never assume from platform name alone:
 - Are real subagents with isolated context and parallel execution available and permitted?
@@ -48,7 +50,8 @@ Track every key component or aspect in the Coverage Ledger:
 Never claim comprehensive coverage while high-priority items remain `not_checked` or `blocked`.
 
 ## `O-05` — Budget Control & Verification Reserve
-- Cap rounds, subagent/tool calls, and inspection breadth per [modes.md](modes.md) and platform limits.
+- Cap reference reads, interaction rounds, subagent/tool calls, and report word counts per [modes.md](modes.md) and platform limits.
+- Reading unrequested reference modules beyond mode caps or printing unrequested raw JSON blocks violates budget discipline.
 - Always reserve budget and context for **evidence verification** and **report finalization**.
 - Never add auditors, expand scope, or escalate mode silently (`M-05`).
 
