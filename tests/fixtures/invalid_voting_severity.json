@@ -1,0 +1,42 @@
+{
+  "schema_version": "2.0",
+  "audit_id": "AUD-BAD-VOTING",
+  "mode": "mid",
+  "execution_topology": "real_swarm",
+  "auditor_count": 3,
+  "auditors": [
+    {"id": "A1", "expertise": "ui"},
+    {"id": "A2", "expertise": "state"},
+    {"id": "A3", "expertise": "performance"}
+  ],
+  "object": {"name": "Notes App", "version": "2.1"},
+  "coverage_ledger": [{"component": "local save", "priority": "high", "owner": "A2", "status": "completed"}],
+  "budget": {"max_rounds": 2, "rounds_used": 1, "exhausted": false},
+  "findings": [
+    {
+      "id": "F-ERR-VOTE",
+      "object_version": "2.1",
+      "location": "save button",
+      "finding_type": "current_issue",
+      "claim": "Low button contrast -> user hesitates -> slower flow",
+      "impact": "Minor readability friction",
+      "likelihood": "low",
+      "severity": "P0",
+      "severity_basis": "majority_vote",
+      "provisional": false,
+      "confidence": "high",
+      "evidence": [],
+      "verification_method": "not_tested",
+      "observed_result": "All agreed",
+      "status": "confirmed",
+      "source_auditors": ["A1", "A2", "A3"],
+      "independent_discoveries": 3,
+      "counterevidence": [],
+      "recommendation": "Increase button contrast.",
+      "limitations": []
+    }
+  ],
+  "moderator": {"unresolved_dissent": [], "stop_reason": "done"},
+  "limitations": [],
+  "status": "completed"
+}

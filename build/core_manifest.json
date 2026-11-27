@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "source_dir": "core",
+  "files": {
+    "contract.md": {
+      "sha256": "5cab91b31debb5e7118d13c4f508e50cda414b33f1c5c864298d3afb09693a95",
+      "bytes": 3894
+    },
+    "evidence.md": {
+      "sha256": "1620d81a2a104aa41f2839f8af043e36b65b04f06f82522d5a998672eb3831dd",
+      "bytes": 5933
+    },
+    "guardrails.md": {
+      "sha256": "4d280791793ae2e5af357dd8f5cb5d9c683f8f92ed20989942d6523593ffe7d4",
+      "bytes": 3640
+    },
+    "modes.md": {
+      "sha256": "f94f53c19687b64724ee5cc1703a934c7df451c91555b38fac39ec22d17da3b4",
+      "bytes": 2811
+    },
+    "orchestrator.md": {
+      "sha256": "2aab1b0dd009369f07f1d8b5041572fc9134cc81ba74849fd6bf9e398cdee58a",
+      "bytes": 5009
+    },
+    "reasoning.md": {
+      "sha256": "fffb27e37d92d2b1b491e8608bee83d3909de7d7821a362d1db68557e3565bdf",
+      "bytes": 2909
+    },
+    "reporting.md": {
+      "sha256": "0036cc6609ebf0fb1e15eeb974d9847a48f3b1c1b772f41fbe8763079e478101",
+      "bytes": 3691
+    },
+    "swarm.md": {
+      "sha256": "53fe6509bd1bc1f9bd1c37374ea3c7d3cb20ef6261b94f37d516276105834dd3",
+      "bytes": 4409
+    }
+  }
+}

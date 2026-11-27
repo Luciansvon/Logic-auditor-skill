@@ -1,0 +1,92 @@
+{
+  "schema_version": "2.0",
+  "audit_id": "AUD-VIRTUAL-001",
+  "mode": "quick",
+  "execution_topology": "virtual_swarm",
+  "auditor_count": 2,
+  "auditors": [
+    {
+      "id": "PERSP-1",
+      "personality": "rationalist",
+      "expertise": "preorder business logic and state transitions",
+      "reasoning_method": ["Causal / Root-Cause Analysis"],
+      "capabilities": ["read_file"]
+    },
+    {
+      "id": "PERSP-2",
+      "personality": "breaker",
+      "expertise": "payment race conditions and recovery",
+      "reasoning_method": ["Counterfactual Reasoning", "Inversion / Premortem"],
+      "capabilities": ["read_file"]
+    }
+  ],
+  "object": {
+    "name": "Event Preorder Flow v1.2",
+    "version": "1.2",
+    "domain": "software workflow"
+  },
+  "coverage_ledger": [
+    {
+      "component": "stock reservation writes",
+      "priority": "critical",
+      "owner": "PERSP-1",
+      "status": "completed",
+      "evidence_refs": ["event-log.txt"]
+    },
+    {
+      "component": "late payment after auto-cancel",
+      "priority": "high",
+      "owner": "PERSP-2",
+      "status": "completed",
+      "evidence_refs": ["checkout-flow.md"]
+    }
+  ],
+  "budget": {
+    "max_rounds": 1,
+    "rounds_used": 1,
+    "exhausted": false
+  },
+  "findings": [
+    {
+      "id": "F-101",
+      "object_version": "1.2",
+      "location": "checkout-flow.md / auto-cancel step",
+      "finding_type": "future_scenario",
+      "claim": "Payment webhook arrives right after auto-cancel timeout -> funds captured without active reservation -> order fails while balance drops",
+      "impact": "Customer disputes and manual refund reconciliation",
+      "likelihood": "medium",
+      "severity": "P1",
+      "provisional": true,
+      "confidence": "medium",
+      "evidence": [
+        {
+          "source": "checkout-flow.md",
+          "observation": "No idempotency guard or order-status check when payment webhook lands",
+          "method": "counterfactual reasoning",
+          "conditions": "webhook delayed > 15 minutes",
+          "result": "workflow gap visible in spec",
+          "auditor_id": "PERSP-2",
+          "provenance": "static_analysis"
+        }
+      ],
+      "verification_method": "not_tested",
+      "observed_result": "Flow contradiction visible in spec; staging runtime not executed",
+      "status": "needs_validation",
+      "source_auditors": ["PERSP-2"],
+      "independent_discoveries": "single_model",
+      "counterevidence": [],
+      "recommendation": "Reject or auto-refund when order status is cancelled; verify in staging with delayed webhook replay.",
+      "limitations": [
+        "Executed as single-agent virtual_swarm without staging runtime test."
+      ]
+    }
+  ],
+  "moderator": {
+    "unresolved_dissent": [],
+    "stop_reason": "All mandatory quick-mode scope finished in 1 round."
+  },
+  "limitations": [
+    "Single-agent, multi-perspective audit (virtual_swarm); no independent consensus."
+  ],
+  "status": "completed"
+}

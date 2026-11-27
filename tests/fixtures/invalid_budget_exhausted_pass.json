@@ -1,0 +1,21 @@
+{
+  "schema_version": "2.0",
+  "audit_id": "AUD-BAD-BUDGET",
+  "mode": "deep",
+  "execution_topology": "real_swarm",
+  "auditor_count": 2,
+  "auditors": [
+    {"id": "A1", "expertise": "architecture"},
+    {"id": "A2", "expertise": "security"}
+  ],
+  "object": {"name": "Gateway API", "version": "3.0"},
+  "coverage_ledger": [
+    {"component": "authentication", "priority": "critical", "owner": "A2", "status": "completed"},
+    {"component": "rate limiter", "priority": "high", "owner": "A1", "status": "not_checked"}
+  ],
+  "budget": {"max_rounds": 2, "rounds_used": 2, "exhausted": true},
+  "findings": [],
+  "moderator": {"unresolved_dissent": [], "stop_reason": "budget exhausted"},
+  "limitations": [],
+  "status": "completed"
+}

@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+dist/
+build/*.tar.gz
+build/*.zip
+.DS_Store
+Thumbs.db

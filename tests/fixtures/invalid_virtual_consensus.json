@@ -1,0 +1,55 @@
+{
+  "schema_version": "2.0",
+  "audit_id": "AUD-BAD-LA04",
+  "mode": "quick",
+  "execution_topology": "virtual_swarm",
+  "auditor_count": 2,
+  "auditors": [
+    {"id": "P1", "expertise": "business logic"},
+    {"id": "P2", "expertise": "access security"}
+  ],
+  "object": {"name": "Job Queue", "version": "1.0"},
+  "coverage_ledger": [{"component": "queue", "priority": "high", "owner": "P1", "status": "completed"}],
+  "budget": {"max_rounds": 1, "rounds_used": 1, "exhausted": false},
+  "findings": [
+    {
+      "id": "F-ERR-04",
+      "object_version": "1.0",
+      "location": "queue.py",
+      "finding_type": "current_issue",
+      "claim": "Unbounded queue size -> memory exhaustion -> service crash",
+      "impact": "Service outage",
+      "likelihood": "medium",
+      "severity": "P1",
+      "provisional": false,
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "queue.py",
+          "observation": "No maxsize limit configured on queue",
+          "method": "static_analysis",
+          "auditor_id": "P1",
+          "provenance": "static_analysis"
+        },
+        {
+          "source": "queue.py",
+          "observation": "Callers can enqueue payloads without rate cap",
+          "method": "static_analysis",
+          "auditor_id": "P2",
+          "provenance": "static_analysis"
+        }
+      ],
+      "verification_method": "static_inspection",
+      "observed_result": "Observed in queue definition",
+      "status": "needs_validation",
+      "source_auditors": ["P1", "P2"],
+      "independent_discoveries": 2,
+      "counterevidence": [],
+      "recommendation": "Enforce bounded maxsize and backpressure.",
+      "limitations": []
+    }
+  ],
+  "moderator": {"unresolved_dissent": [], "stop_reason": "done"},
+  "limitations": [],
+  "status": "completed"
+}

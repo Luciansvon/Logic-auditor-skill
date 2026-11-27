@@ -1,0 +1,141 @@
+{
+  "schema_version": "2.0",
+  "audit_id": "AUD-REAL-001",
+  "mode": "mid",
+  "execution_topology": "real_swarm",
+  "auditor_count": 3,
+  "auditors": [
+    {
+      "id": "AUD-1",
+      "personality": "rationalist",
+      "expertise": "structural joints and adhesive specs",
+      "reasoning_method": ["First Principles", "Boundary / Stress Analysis"],
+      "capabilities": ["read_file"]
+    },
+    {
+      "id": "AUD-2",
+      "personality": "pragmatist",
+      "expertise": "ergonomics and wet-surface traction",
+      "reasoning_method": ["Inversion / Premortem"],
+      "capabilities": ["read_file"]
+    },
+    {
+      "id": "AUD-3",
+      "personality": "investigator",
+      "expertise": "batch-to-batch production variance",
+      "reasoning_method": ["Variant Analysis", "Causal / Root-Cause Analysis"],
+      "capabilities": ["read_file"]
+    }
+  ],
+  "object": {
+    "name": "Courier Motorcycle Shoe Prototype v0.4",
+    "version": "0.4",
+    "domain": "physical product"
+  },
+  "coverage_ledger": [
+    {
+      "component": "heel joint and sole bond",
+      "priority": "critical",
+      "owner": "AUD-1",
+      "status": "completed",
+      "evidence_refs": ["heel-photo-01.jpg"]
+    },
+    {
+      "component": "wet ceramic tile traction",
+      "priority": "high",
+      "owner": "AUD-2",
+      "status": "partial",
+      "evidence_refs": ["wet slip test not yet run"]
+    }
+  ],
+  "budget": {
+    "max_rounds": 2,
+    "rounds_used": 2,
+    "exhausted": false
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "object_version": "0.4",
+      "location": "sample-unit-B / rear heel bond",
+      "finding_type": "current_issue",
+      "claim": "Thin heel adhesive -> rear sole peels under repeated flex -> courier footing stability fails",
+      "impact": "Ankle sprain or slip hazard when dismounting",
+      "likelihood": "high",
+      "severity": "P0",
+      "provisional": false,
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "heel-photo-01.jpg",
+          "observation": "Visible 2 mm gap along heel adhesive seam on unit B",
+          "method": "targeted visual inspection",
+          "conditions": "dry pre-field inspection",
+          "result": "early delamination observed",
+          "auditor_id": "AUD-1",
+          "provenance": "direct_observation"
+        },
+        {
+          "source": "batch-04-qc-log.txt",
+          "observation": "Two of five batch-04 units measure below 1.5 mm adhesive spec",
+          "method": "cross-unit variant analysis",
+          "conditions": "batch-04 QC inspection",
+          "result": "production spec deviation confirmed",
+          "auditor_id": "AUD-3",
+          "provenance": "direct_observation"
+        }
+      ],
+      "verification_method": "visual seam inspection and batch-04 gap measurement",
+      "observed_result": "2 mm seam gap and sub-spec adhesive thickness confirmed on samples",
+      "status": "confirmed",
+      "source_auditors": ["AUD-1", "AUD-3"],
+      "independent_discoveries": 2,
+      "counterevidence": [],
+      "recommendation": "Hold batch-04 shipment; add heel reinforcement stitching and pull-test >= 250 N (pass if 0 mm gap after 500 flex cycles).",
+      "limitations": []
+    },
+    {
+      "id": "F-002",
+      "object_version": "0.4",
+      "location": "forefoot outsole / water channels",
+      "finding_type": "future_scenario",
+      "claim": "Shallow tread channels on day 3 of rain -> water fails to clear during hard braking on wet tile -> courier slips",
+      "impact": "Fall injury while delivering on wet ceramic porches",
+      "likelihood": "unknown",
+      "severity": "P1",
+      "provisional": true,
+      "confidence": "low",
+      "evidence": [
+        {
+          "source": "sole-spec-v0.4.md",
+          "observation": "Tread depth listed as 1.2 mm with no wet friction coefficient test data",
+          "method": "premortem and boundary analysis",
+          "conditions": "7-day rain field scenario",
+          "result": "risk indication requiring physical test",
+          "auditor_id": "AUD-2",
+          "provenance": "static_analysis"
+        }
+      ],
+      "verification_method": "not_tested",
+      "observed_result": "Physical traction test on wet ceramic tile has not been run",
+      "status": "needs_validation",
+      "source_auditors": ["AUD-2"],
+      "independent_discoveries": 1,
+      "counterevidence": [],
+      "recommendation": "Run inclined wet ceramic slip test before day-1 field trial (pass if no slip at 15-degree incline).",
+      "limitations": [
+        "Physical traction test not executed; P1 tier is provisional and may drop to P2 if the 15-degree wet incline test passes."
+      ]
+    }
+  ],
+  "moderator": {
+    "unresolved_dissent": [
+      "AUD-3 believes tighter press SOP suffices without stitching, whereas AUD-1 insists stitching is mandatory for motorcycle braking shear."
+    ],
+    "stop_reason": "Primary scope completed; wet traction awaits out-of-band physical testing."
+  },
+  "limitations": [
+    "Physical wet-surface traction tests cannot be executed from document inspection."
+  ],
+  "status": "partial"
+}

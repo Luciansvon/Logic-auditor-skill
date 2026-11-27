@@ -1,0 +1,17 @@
+{
+  "schema_version": "2.0",
+  "audit_id": "AUD-BAD-LA03",
+  "mode": "quick",
+  "execution_topology": "virtual_swarm",
+  "auditor_count": 1,
+  "auditors": [
+    {"id": "P1", "expertise": "general"}
+  ],
+  "object": {"name": "Card Layout", "version": "1.0"},
+  "coverage_ledger": [{"component": "layout", "priority": "high", "owner": "P1", "status": "completed"}],
+  "budget": {"max_rounds": 1, "rounds_used": 1, "exhausted": false},
+  "findings": [],
+  "moderator": {"unresolved_dissent": [], "stop_reason": "done"},
+  "limitations": [],
+  "status": "completed"
+}
